@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Advan Tab V8 / Alldocube iPlay 60 mini Pro (T812)
+    Evolution X "cnb" (Android 17, release cp2a)
+
+    Based on diggieman/local_manifests (branch EvoX/cnb).
+    Revisions are pinned to commits that were checked against each other;
+    build.sh with the "latest" option replaces them with the "upstream" branch heads.
+-->
+<manifest>
+  <remote name="diggieman" fetch="https://github.com/diggieman" />
+  <remote name="millennium" fetch="https://github.com/MillenniumOSS" />
+
+  <!-- MediaTek HALs and vendor sepolicy -->
+  <project path="hardware/mediatek" name="android_hardware_mediatek" remote="millennium"
+           revision="b27c726ae34e36acac4ead2e51c54321e92dfba7" upstream="seventeen" dest-branch="seventeen" />
+  <project path="device/mediatek/sepolicy_vndr" name="android_device_mediatek_sepolicy_vndr" remote="millennium"
+           revision="a0d3ae07e85b4d6a7abb30c1034a18f7890c760b" upstream="seventeen" dest-branch="seventeen" />
+
+  <!-- Common MediaTek IMS -->
+  <project path="vendor/mediatek/ims" name="android_vendor_mediatek_ims" remote="diggieman"
+           revision="e9cab87f806ab010346dd61cab3dc4fd6051aa59" upstream="android-16-qpr2" dest-branch="android-16-qpr2" />
+
+  <!-- T812 trees (stock GKI 5.10 kernel is prebuilt in T812-kernel) -->
+  <project path="device/advan/T812" name="android_device_advan_T812" remote="diggieman"
+           revision="6aef88db07e95cec69a84c82e4a662490173a55e" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+  <project path="device/advan/T812-kernel" name="android_device_advan_T812-kernel" remote="diggieman"
+           revision="cb49cb7ac576347788c6ed0b5289cb0c34fdbaf1" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+  <project path="vendor/advan/T812" name="android_vendor_advan_T812" remote="diggieman"
+           revision="03ae84884326aff503d8648ad5fb1404cd5cdf8e" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+</manifest>
