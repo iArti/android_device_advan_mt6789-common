@@ -85,7 +85,7 @@ for line in "${PROJECTS[@]}"; do
             fi
         else
             echo "==> Forking ${upstream}"
-            fork_args=("$upstream" --clone=false --remote=false)
+            fork_args=("$upstream" --clone=false)
             [[ -n "$ORG" ]] && fork_args+=(--org "$ORG")
             gh repo fork "${fork_args[@]}"
         fi
