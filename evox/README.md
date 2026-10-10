@@ -48,7 +48,7 @@ git add evox/manifests && git commit -m "evox: Use forked T812 repositories" && 
 ## Сборка
 
 ```bash
-git clone -b claude/friendly-darwin-tznwck https://github.com/iArti/android_device_advan_mt6789-common
+git clone https://github.com/iArti/android_device_advan_mt6789-common
 ./android_device_advan_mt6789-common/evox/build.sh --install-deps
 ```
 
