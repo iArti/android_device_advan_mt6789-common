@@ -8,8 +8,8 @@
     build.sh with the "latest" option replaces them with the "upstream" branch heads.
 -->
 <manifest>
-  <remote name="diggieman" fetch="https://github.com/diggieman" />
-  <remote name="millennium" fetch="https://github.com/MillenniumOSS" />
+  <remote name="diggieman" fetch="https://github.com/iArti" />
+  <remote name="millennium" fetch="https://github.com/iArti" />
 
   <!-- MediaTek HALs and vendor sepolicy -->
   <project path="hardware/mediatek" name="android_hardware_mediatek" remote="millennium"
