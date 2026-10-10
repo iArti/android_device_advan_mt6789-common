@@ -23,6 +23,21 @@ vendor-модули из `device/advan/T812-kernel`.
 Коммиты закреплены в `manifests/*.xml`. С флагом `--latest` берутся последние
 коммиты веток.
 
+## Свои копии репозиториев (рекомендуется)
+
+Если репозитории diggieman или MillenniumOSS удалят, сборка сломается. Скрипт
+`fork-repos.sh` делает форки всех репозиториев T812 со всеми ветками в ваш
+аккаунт через [gh](https://cli.github.com), проверяет, что закреплённые
+коммиты в форках есть, и переводит манифесты на ваши копии:
+
+```bash
+gh auth login
+./evox/fork-repos.sh            # или --org ORG, --no-rewrite
+git add evox/manifests && git commit -m "evox: Use forked T812 repositories" && git push
+```
+
+Повторный запуск подтягивает в существующие форки новые коммиты всех веток.
+
 ## Требования к машине
 
 - x86_64 Linux, лучше Ubuntu 22.04/24.04
