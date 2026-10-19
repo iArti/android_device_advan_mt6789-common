@@ -100,3 +100,23 @@ adb sideload EvolutionX-*.zip
 - существуют все Soong namespace из `device.mk`;
 - у Evolution X есть нужный release (`bp4a` для bka, `cp2a` для cnb);
 - нет недокачанных git-lfs файлов.
+
+## Ток зарядки (раздел `csci`)
+
+Ток заряда батареи задаётся не в прошивке, а в разделе `csci` (конфиг ODM,
+его читает драйвер `mtk_charger_framework`, перекрывая device tree). Сток —
+2500 мА. Раздел не входит в OTA, поэтому меняется отдельно и переживает
+обновления прошивки.
+
+```sh
+adb push evox/tools/t812-csci-charging.sh /data/local/tmp/
+adb shell su -c "sh /data/local/tmp/t812-csci-charging.sh"          # 3200 мА
+adb shell su -c "sh /data/local/tmp/t812-csci-charging.sh 3500"     # проверено стабильно
+adb shell su -c "sh /data/local/tmp/t812-csci-charging.sh --show"
+adb shell su -c "sh /data/local/tmp/t812-csci-charging.sh --restore"
+```
+
+Скрипт при первом запуске сохраняет стоковый раздел в `/sdcard/csci_stock.img`
+(скопируйте его на ПК), меняет только значение `ac_charger_current` той же
+длины и проверяет запись. После изменения нужна перезагрузка. Подробности
+и ограничения — в шапке скрипта.
