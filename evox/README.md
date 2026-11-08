@@ -3,18 +3,19 @@
 Сборка одной командой. Скрипт синхронизирует Evolution X и деревья T812,
 проверяет их, собирает прошивку и складывает файлы для прошивки в одну папку.
 
-Ядро не собирается: используется стоковый GKI 5.10 (`android12-5.10`) и
-vendor-модули из `device/advan/T812-kernel`.
+Ядро не собирается: в `device/advan/T812-kernel` лежит готовый GKI 5.10
+(`android12-5.10`, собран из `kernel/common` на коммите стокового ядра) со
+встроенным KernelSU-Next и поддержкой Droidspaces, и стоковые vendor-модули.
 
 ## Что используется
 
 | Путь | Репозиторий | `bka` (Android 16 QPR2) | `cnb` (Android 17) |
 |---|---|---|---|
-| `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `61494ae` | `lineage-24.0` @ `587809e` |
-| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `6c238ba` (dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `6c238ba` (то же) |
+| `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `ae61af3` | `lineage-24.0` @ `587809e` |
+| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `10b695b` (GKI с KernelSU-Next, dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `6c238ba` (стоковое ядро, dtbo с ёмкостью 5665 мА·ч) |
 | `vendor/advan/T812` | diggieman/android_vendor_advan_T812 | `lineage-23.2` @ `70d1803` | `lineage-24.0` @ `03ae848` |
 | `vendor/mediatek/ims` | diggieman/android_vendor_mediatek_ims | `android-16-qpr2` @ `e9cab87` | то же |
-| `hardware/mediatek` | MillenniumOSS/android_hardware_mediatek | `sixteen` @ `37f74a4` | `seventeen` @ `b27c726` |
+| `hardware/mediatek` | MillenniumOSS/android_hardware_mediatek | `sixteen` @ `a27929e` | `seventeen` @ `b27c726` |
 | `device/mediatek/sepolicy_vndr` | MillenniumOSS/android_device_mediatek_sepolicy_vndr | `sixteen-qpr2-rebase` @ `1136b3f` | `seventeen` @ `a0d3ae0` |
 
 Деревья из `Advan-MT6789-Resources` (включая этот репозиторий `mt6789-common`)
