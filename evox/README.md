@@ -12,7 +12,7 @@
 | Путь | Репозиторий | `bka` (Android 16 QPR2) | `cnb` (Android 17) |
 |---|---|---|---|
 | `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `ae61af3` | `lineage-24.0` @ `587809e` |
-| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `10b695b` (GKI с KernelSU-Next, dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `6c238ba` (стоковое ядро, dtbo с ёмкостью 5665 мА·ч) |
+| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `ed7d198` (GKI с KernelSU-Next, dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `6c238ba` (стоковое ядро, dtbo с ёмкостью 5665 мА·ч) |
 | `vendor/advan/T812` | diggieman/android_vendor_advan_T812 | `lineage-23.2` @ `70d1803` | `lineage-24.0` @ `03ae848` |
 | `vendor/mediatek/ims` | diggieman/android_vendor_mediatek_ims | `android-16-qpr2` @ `e9cab87` | то же |
 | `hardware/mediatek` | MillenniumOSS/android_hardware_mediatek | `sixteen` @ `7a762ae` | `seventeen` @ `b27c726` |
