@@ -10,7 +10,7 @@ vendor-модули из `device/advan/T812-kernel`.
 
 | Путь | Репозиторий | `bka` (Android 16 QPR2) | `cnb` (Android 17) |
 |---|---|---|---|
-| `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `1d8ef75` | `lineage-24.0` @ `81f57f0` |
+| `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `e98f269` | `lineage-24.0` @ `43bff42` |
 | `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `9ec0a8e` (dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `9ec0a8e` (то же) |
 | `vendor/advan/T812` | diggieman/android_vendor_advan_T812 | `lineage-23.2` @ `70d1803` | `lineage-24.0` @ `03ae848` |
 | `vendor/mediatek/ims` | diggieman/android_vendor_mediatek_ims | `android-16-qpr2` @ `e9cab87` | то же |
