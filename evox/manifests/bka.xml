@@ -13,7 +13,7 @@
 
   <!-- MediaTek HALs and vendor sepolicy -->
   <project path="hardware/mediatek" name="android_hardware_mediatek" remote="millennium"
-           revision="a27929e130774b343674a8f9b408f0348066eb7a" upstream="sixteen" dest-branch="sixteen" />
+           revision="7a762ae6339da978bcc179ca3d62450c814c15e9" upstream="sixteen" dest-branch="sixteen" />
   <project path="device/mediatek/sepolicy_vndr" name="android_device_mediatek_sepolicy_vndr" remote="millennium"
            revision="1136b3f2fd3079b2b3a44db457ae9ed7bca43fe2" upstream="sixteen-qpr2-rebase" dest-branch="sixteen-qpr2-rebase" />
 
