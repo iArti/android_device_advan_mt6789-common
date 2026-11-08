@@ -37,6 +37,7 @@ CCACHE_SIZE="50G"
 USE_CCACHE=1
 FORCE=0
 PANEL_90HZ=0
+VB_ONLY=0
 
 # ----------------------------------------------------------------- helpers ---
 if [[ -t 1 ]]; then
@@ -61,6 +62,9 @@ Build options:
   -j, --jobs N          parallel jobs for sync and build (default: picked from CPU/RAM)
       --vanilla         build without GApps (WITH_GMS=false)
       --clean           run 'm installclean' before building
+      --vendor-boot-only
+                        build only vendor_boot.img (kernel modules, recovery),
+                        e.g. to try --panel-90hz without a full build
       --panel-90hz      EXPERIMENTAL: run the panel at a fixed 90 Hz instead of 60 Hz
                         (patched panel modules from device/advan/T812-kernel/experimental)
 
@@ -90,6 +94,7 @@ while [[ $# -gt 0 ]]; do
         --vanilla)      WITH_GMS="false"; shift ;;
         --clean)        DO_CLEAN=1; shift ;;
         --panel-90hz)   PANEL_90HZ=1; shift ;;
+        --vendor-boot-only) VB_ONLY=1; shift ;;
         --latest)       USE_LATEST=1; shift ;;
         --full-history) SHALLOW=0; shift ;;
         --no-sync)      DO_SYNC=0; shift ;;
@@ -377,13 +382,37 @@ build() {
     if ((DO_CLEAN)); then
         m installclean || die "m installclean failed"
     fi
-    m evolution -j"$JOBS" 2>&1 | tee "$log"
+    local target=evolution
+    ((VB_ONLY)) && target=vendorbootimage
+    m "$target" -j"$JOBS" 2>&1 | tee "$log"
     local rc=${PIPESTATUS[0]}
     set -eu
     ((rc == 0)) || die "build failed (exit ${rc}); see ${SRC_DIR}/${log}"
 }
 
+collect_vendor_boot() {
+    local out="${SRC_DIR}/out/target/product/${DEVICE}"
+    [[ -f "${out}/vendor_boot.img" ]] || die "no vendor_boot.img in ${out}"
+    local rel
+    rel="${SRC_DIR}/release/$(date +%Y%m%d-%H%M)-vendor_boot"
+    mkdir -p "$rel"
+    cp "${out}/vendor_boot.img" "$rel/"
+    (cd "$rel" && sha256sum -- * > SHA256SUMS)
+    info "Done. ${rel}:"
+    ls -lh "$rel"
+    echo
+    echo "Keep the vendor_boot.img of the build that is installed now, then flash this one"
+    echo "to the active slot, from fastboot:"
+    echo "  fastboot flash vendor_boot vendor_boot.img"
+    echo "or from the running system as root (slot from 'getprop ro.boot.slot_suffix'):"
+    echo "  dd if=vendor_boot.img of=/dev/block/by-name/vendor_boot_<slot> bs=1M conv=fsync"
+}
+
 collect() {
+    if ((VB_ONLY)); then
+        collect_vendor_boot
+        return
+    fi
     local out="${SRC_DIR}/out/target/product/${DEVICE}"
     local zip="" z
     for z in "${out}"/EvolutionX-*.zip; do
