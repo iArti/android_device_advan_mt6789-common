@@ -23,9 +23,9 @@
 
   <!-- T812 trees (stock GKI 5.10 kernel is prebuilt in T812-kernel) -->
   <project path="device/advan/T812" name="android_device_advan_T812" remote="diggieman"
-           revision="6aef88db07e95cec69a84c82e4a662490173a55e" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+           revision="14bbc87b50934f9c247f76840f077028a2720c7b" upstream="lineage-24.0" dest-branch="lineage-24.0" />
   <project path="device/advan/T812-kernel" name="android_device_advan_T812-kernel" remote="diggieman"
-           revision="cb49cb7ac576347788c6ed0b5289cb0c34fdbaf1" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+           revision="9ec0a8e40e12863ecf783c6b12f0626f099ba491" upstream="lineage-24.0" dest-branch="lineage-24.0" />
   <project path="vendor/advan/T812" name="android_vendor_advan_T812" remote="diggieman"
            revision="03ae84884326aff503d8648ad5fb1404cd5cdf8e" upstream="lineage-24.0" dest-branch="lineage-24.0" />
 </manifest>
