@@ -25,7 +25,7 @@
   <project path="device/advan/T812" name="android_device_advan_T812" remote="diggieman"
            revision="5684f215e22db57a19e5cf3eec2e1a6188338005" upstream="lineage-23.2" dest-branch="lineage-23.2" />
   <project path="device/advan/T812-kernel" name="android_device_advan_T812-kernel" remote="diggieman"
-           revision="9ec0a8e40e12863ecf783c6b12f0626f099ba491" upstream="lineage-23.2" dest-branch="lineage-23.2" />
+           revision="e575e038450559fb644971f54051f9683917e361" upstream="lineage-23.2" dest-branch="lineage-23.2" />
   <project path="vendor/advan/T812" name="android_vendor_advan_T812" remote="diggieman"
            revision="70d1803344817ef52175f1c1e5403b246cdd5f8e" upstream="lineage-23.2" dest-branch="lineage-23.2" />
 </manifest>

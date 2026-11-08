@@ -11,7 +11,7 @@ vendor-модули из `device/advan/T812-kernel`.
 | Путь | Репозиторий | `bka` (Android 16 QPR2) | `cnb` (Android 17) |
 |---|---|---|---|
 | `device/advan/T812` | diggieman/android_device_advan_T812 | `lineage-23.2` @ `5684f21` | `lineage-24.0` @ `bcff686` |
-| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `9ec0a8e` (dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `9ec0a8e` (то же) |
+| `device/advan/T812-kernel` | diggieman/android_device_advan_T812-kernel | `lineage-23.2` @ `e575e03` (dtbo с ёмкостью 5665 мА·ч) | `lineage-24.0` @ `e575e03` (то же) |
 | `vendor/advan/T812` | diggieman/android_vendor_advan_T812 | `lineage-23.2` @ `70d1803` | `lineage-24.0` @ `03ae848` |
 | `vendor/mediatek/ims` | diggieman/android_vendor_mediatek_ims | `android-16-qpr2` @ `e9cab87` | то же |
 | `hardware/mediatek` | MillenniumOSS/android_hardware_mediatek | `sixteen` @ `37f74a4` | `seventeen` @ `b27c726` |
@@ -120,3 +120,15 @@ adb shell su -c "sh /data/local/tmp/t812-csci-charging.sh --restore"
 (скопируйте его на ПК), меняет только значение `ac_charger_current` той же
 длины и проверяет запись. После изменения нужна перезагрузка. Подробности
 и ограничения — в шапке скрипта.
+
+## Экспериментально: экран 90 Гц (`--panel-90hz`)
+
+Панель FT8201P умеет 90 Гц: в её драйвере есть второй режим с тем же
+пиксельным клоком и скоростью DSI, но коротким VFP. Драйвер Advan
+отдаёт системе один режим и жёстко считает его на 60 Гц.
+`./evox/build.sh --panel-90hz` подкладывает пропатченные модули панели
+(`device/advan/T812-kernel/experimental/panel-90hz`, по 2 байта в каждом),
+и экран работает на постоянных 90 Гц. Без флага собирается сток.
+
+Модули лежат в `vendor_boot`. Если экран не заведётся, прошейте
+`vendor_boot.img` от предыдущей сборки через fastboot.
