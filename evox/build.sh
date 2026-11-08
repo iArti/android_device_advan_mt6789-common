@@ -36,7 +36,6 @@ SHALLOW=1
 CCACHE_SIZE="50G"
 USE_CCACHE=1
 FORCE=0
-PANEL_90HZ=0
 VB_ONLY=0
 
 # ----------------------------------------------------------------- helpers ---
@@ -64,9 +63,7 @@ Build options:
       --clean           run 'm installclean' before building
       --vendor-boot-only
                         build only vendor_boot.img (kernel modules, recovery),
-                        e.g. to try --panel-90hz without a full build
-      --panel-90hz      EXPERIMENTAL: run the panel at a fixed 90 Hz instead of 60 Hz
-                        (patched panel modules from device/advan/T812-kernel/experimental)
+                        e.g. to try kernel module changes without a full build
 
 Sync options:
       --latest          use the newest commits of the T812 trees instead of
@@ -93,7 +90,6 @@ while [[ $# -gt 0 ]]; do
         -j|--jobs)      JOBS="${2:?}"; shift 2 ;;
         --vanilla)      WITH_GMS="false"; shift ;;
         --clean)        DO_CLEAN=1; shift ;;
-        --panel-90hz)   PANEL_90HZ=1; shift ;;
         --vendor-boot-only) VB_ONLY=1; shift ;;
         --latest)       USE_LATEST=1; shift ;;
         --full-history) SHALLOW=0; shift ;;
@@ -329,28 +325,6 @@ PY
     ok "device, vendor blobs and prebuilt kernel are complete"
 }
 
-# -------------------------------------------------------------- panel 90 Hz ---
-# The panel driver only exposes one mode and hardcodes 60 fps when it builds
-# it. device/advan/T812-kernel/experimental/panel-90hz has the two panel
-# modules patched to use the panel's own 90 Hz timings instead (same pixel
-# clock and DSI rate, shorter vertical front porch). Without --panel-90hz the
-# stock modules are put back, so dropping the flag reverts it.
-apply_panel_mode() {
-    local kdir="${SRC_DIR}/device/advan/T812-kernel"
-    local mods=(cust_panel.ko panel_wb_common_lcm.ko) m
-    if ((PANEL_90HZ)); then
-        [[ -d "${kdir}/experimental/panel-90hz" ]] || die "no experimental/panel-90hz in ${kdir}"
-        for m in "${mods[@]}"; do
-            cp "${kdir}/experimental/panel-90hz/${m}" "${kdir}/modules/vendor_ramdisk/${m}"
-        done
-        warn "EXPERIMENTAL: building with the panel at 90 Hz (--panel-90hz)"
-    else
-        for m in "${mods[@]}"; do
-            git -C "$kdir" checkout -q -- "modules/vendor_ramdisk/${m}"
-        done
-    fi
-}
-
 # ------------------------------------------------------------------- build ---
 build() {
     cd "$SRC_DIR"
@@ -446,7 +420,6 @@ host_checks
 ((DO_SYNC)) && sync_sources
 [[ -d "${SRC_DIR}/.repo" ]] || die "${SRC_DIR} is not a synced tree (drop --no-sync)"
 verify_tree
-apply_panel_mode
 if ((DO_BUILD)); then
     build
     collect
