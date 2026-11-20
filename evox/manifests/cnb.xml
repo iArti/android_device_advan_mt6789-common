@@ -13,9 +13,9 @@
 
   <!-- MediaTek HALs and vendor sepolicy -->
   <project path="hardware/mediatek" name="android_hardware_mediatek" remote="millennium"
-           revision="b27c726ae34e36acac4ead2e51c54321e92dfba7" upstream="seventeen" dest-branch="seventeen" />
+           revision="b43510692f9ceba205aac4bed7f88b0c832f8951" upstream="seventeen" dest-branch="seventeen" />
   <project path="device/mediatek/sepolicy_vndr" name="android_device_mediatek_sepolicy_vndr" remote="millennium"
-           revision="a0d3ae07e85b4d6a7abb30c1034a18f7890c760b" upstream="seventeen" dest-branch="seventeen" />
+           revision="ac33bc4c3ce7ab5ddc9e06d462e019ec827cb4a1" upstream="seventeen" dest-branch="seventeen" />
 
   <!-- Common MediaTek IMS -->
   <project path="vendor/mediatek/ims" name="android_vendor_mediatek_ims" remote="diggieman"
@@ -23,9 +23,9 @@
 
   <!-- T812 trees (stock GKI 5.10 kernel is prebuilt in T812-kernel) -->
   <project path="device/advan/T812" name="android_device_advan_T812" remote="diggieman"
-           revision="3444f62b69372ab48fce08b2232f23582357bd2a" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+           revision="b2c5e0832fd89a2bf7d6c093660c78f0a7705d04" upstream="lineage-24.0" dest-branch="lineage-24.0" />
   <project path="device/advan/T812-kernel" name="android_device_advan_T812-kernel" remote="diggieman"
-           revision="6c238ba1f1041f100c06f5d621644022e1332cb3" upstream="lineage-24.0" dest-branch="lineage-24.0" />
+           revision="8810c6a8db90f34a0e81cefc02493a40aa051640" upstream="lineage-24.0" dest-branch="lineage-24.0" />
   <project path="vendor/advan/T812" name="android_vendor_advan_T812" remote="diggieman"
            revision="03ae84884326aff503d8648ad5fb1404cd5cdf8e" upstream="lineage-24.0" dest-branch="lineage-24.0" />
 </manifest>
